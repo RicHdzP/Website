@@ -1,0 +1,338 @@
+[33mcommit e02197f26df5032d59c4b09f0ef12b3d1ed5d3b4[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Ricardo <Richdz3095@gmail.com>
+Date:   Mon Mar 21 13:40:08 2022 -0600
+
+    Commit de página web
+
+[1mdiff --git a/app.js b/app.js[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1e06a2b[m
+[1m--- /dev/null[m
+[1m+++ b/app.js[m
+[36m@@ -0,0 +1,45 @@[m
+[32m+[m[32mconst sections = document.querySelectorAll('.section');[m
+[32m+[m[32mconst sectBtns = document.querySelectorAll('.controlls');[m
+[32m+[m[32mconst sectBtn = document.querySelectorAll('.control');[m
+[32m+[m[32mconst allSections= document.querySelector('.main-content');[m
+[32m+[m
+[32m+[m
+[32m+[m[32mfunction PageTransitions() {[m
+[32m+[m[32m    //Button click active class[m
+[32m+[m[32m    for(let i = 0; i < sectBtn.length; i++) {[m
+[32m+[m[32m        sectBtn[i].addEventListener('click', function(){[m
+[32m+[m[32m            let currentBtn = document.querySelectorAll('.active-btn');[m
+[32m+[m[32m            currentBtn[0].className = currentBtn[0].className.replace('active-btn', '');[m
+[32m+[m[32m            this.className += ' active-btn';[m
+[32m+[m[32m        })[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    //Sections Active class[m
+[32m+[m[32m    allSections.addEventListener('click', (e) =>{[m
+[32m+[m[32m        const id = e.target.dataset.id;[m
+[32m+[m[32m        if(id){[m
+[32m+[m[32m            //remove selected from the other btns[m
+[32m+[m[32m            const btns = sectBtns[0].children;[m
+[32m+[m[32m            for (let btn of btns){[m
+[32m+[m[32m                btn.classList.remove('active')[m
+[32m+[m[32m            }[m
+[32m+[m[32m            e.target.classList.add('active')[m
+[32m+[m
+[32m+[m[32m            //hide other sections[m
+[32m+[m[32m            sections.forEach((section)=>{[m
+[32m+[m[32m                section.classList.remove('active')[m
+[32m+[m[32m            })[m
+[32m+[m[32m            const element = document.getElementById(id)[m
+[32m+[m[32m            element.classList.add('active');[m
+[32m+[m[32m        }[m
+[32m+[m[32m    })[m
+[32m+[m
+[32m+[m[32m    //Toggle theme[m
+[32m+[m[32m    const ThemeBtn = document.querySelector('.theme-btn');[m
+[32m+[m[32m    ThemeBtn.addEventListener('click', () => {[m
+[32m+[m[32m        let element = document.body;[m
+[32m+[m[32m        element.classList.toggle('light-mode')[m
+[32m+[m[32m    })[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mPageTransitions();[m
+\ No newline at end of file[m
+[1mdiff --git a/index.html b/index.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..76766f4[m
+[1m--- /dev/null[m
+[1m+++ b/index.html[m
+[36m@@ -0,0 +1,326 @@[m
+[32m+[m[32m<!DOCTYPE html>[m
+[32m+[m[32m<html lang="en">[m
+[32m+[m[32m<head>[m
+[32m+[m[32m    <meta charset="UTF-8">[m
+[32m+[m[32m    <meta name="viewport" content="width=device-width, initial-scale=1.0">[m
+[32m+[m[32m    <title>Portfolio</title>[m
+[32m+[m[32m    <link rel="stylesheet" href="styles/styles.css">[m
+[32m+[m[32m    <link rel="preconnect" href="https://fonts.googleapis.com">[m
+[32m+[m[32m    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>[m
+[32m+[m[32m    <script src="https://kit.fontawesome.com/2acaca0ae4.js" crossorigin="anonymous"></script>[m
+[32m+[m[32m    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />[m
+[32m+[m[32m    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">[m
+[32m+[m[32m</head>[m
+[32m+[m[32m<body class="main-content">[m
+[32m+[m[32m    <header class="section sec1 header active" id="home">[m
+[32m+[m[32m        <div class="header-content">[m
+[32m+[m[32m            <div class="left-header">[m
+[32m+[m[32m                <div class="h-shape"></div>[m
+[32m+[m[32m                <div class="image">[m
+[32m+[m[32m                    <img src="img/hero.jpg" alt="">[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            <div class="right-header">[m
+[32m+[m[32m                <h1 class="name">[m
+[32m+[m[32m                    Hi, I'm <span>Ricardo Al'Nair Hernández Pérez.</span>[m
+[32m+[m[32m                    <p>I'm a Data Analyst.</p>[m
+[32m+[m[32m                </h1>[m
+[32m+[m[32m                <p>[m
+[32m+[m[32m                    Data Analyst with 3+ years in the logistics industry. Knowledge on Python, Julia and C++, adept at monitoring and receiving data from various data streams including SQL, Access and Excel.[m
+[32m+[m[32m                </p>[m
+[32m+[m[32m                <div class="btn-con">[m
+[32m+[m[32m                    <a href="" class="main-btn">[m
+[32m+[m[32m                        <span class="btn-text">Download CV</span>[m
+[32m+[m[32m                        <span class="btn-icon"><i class="fas fa-download"></i></span>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                </a>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m    </header>[m
+[32m+[m[32m    <main>[m
+[32m+[m[32m        <section class="section sec2 about" id="about">[m
+[32m+[m[32m            <div class="main-title">[m
+[32m+[m[32m                <h2>About <span>me</span><span class="bg-text">my stats</span></h2>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            <div class="about-container">[m
+[32m+[m[32m                <div class="left-about">[m
+[32m+[m[32m                    <h4>About me</h4>[m
+[32m+[m[32m                    <p>[m
+[32m+[m[32m                        <h5>Helping others to make the right decisions, <span> data driven decisions.</span></h5>[m
+[32m+[m[32m                        <p>I am Specialized in analyzing data. Results, trends and recommendations are clearly presented in reports or tools.</p>[m
+[32m+[m[41m                        [m
+[32m+[m[41m                        [m
+[32m+[m[32m                    </p>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="right-about">[m
+[32m+[m[32m                    <div class="about-item">[m
+[32m+[m[32m                        <div class="abt-text">[m
+[32m+[m[32m                            <p class="large-text">3</p>[m
+[32m+[m[32m                            <p class="small-text">Projects <br /> Completed</p>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="about-item">[m
+[32m+[m[32m                        <div class="abt-text">[m
+[32m+[m[32m                            <p class="large-text">3+</p>[m
+[32m+[m[32m                            <p class="small-text">Years of <br /> experience</p>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="about-item">[m
+[32m+[m[32m                        <div class="abt-text">[m
+[32m+[m[32m                            <p class="large-text">300+</p>[m
+[32m+[m[32m                            <p class="small-text">Happy <br /> clients</p>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="about-item">[m
+[32m+[m[32m                        <div class="abt-text">[m
+[32m+[m[32m                            <p class="large-text">400+</p>[m
+[32m+[m[32m                            <p class="small-text">Customer <br /> reviews</p>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            <div class="about-stats">[m
+[32m+[m[32m                <h4 class="stat-title">My Skills</h4>[m
+[32m+[m[32m                <div class="progress-bars">[m
+[32m+[m[32m                    <div class="progress-bar">[m
+[32m+[m[32m                        <p class="prog-title">html5</p>[m
+[32m+[m[32m                        <div class="progress-con">[m
+[32m+[m[32m                            <p class="prog text">80%</p>[m
+[32m+[m[32m                            <div class="progress">[m
+[32m+[m[32m                                <span class="html"></span>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="progress-bar">[m
+[32m+[m[32m                        <p class="prog-title">css3</p>[m
+[32m+[m[32m                        <div class="progress-con">[m
+[32m+[m[32m                            <p class="prog text">95%</p>[m
+[32m+[m[32m                            <div class="progress">[m
+[32m+[m[32m                                <span class="css3"></span>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="progress-bar">[m
+[32m+[m[32m                        <p class="prog-title">javascript</p>[m
+[32m+[m[32m                        <div class="progress-con">[m
+[32m+[m[32m                            <p class="prog text">75%</p>[m
+[32m+[m[32m                            <div class="progress">[m
+[32m+[m[32m                                <span class="javascript"></span>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="progress-bar">[m
+[32m+[m[32m                        <p class="prog-title">react.js</p>[m
+[32m+[m[32m                        <div class="progress-con">[m
+[32m+[m[32m                            <p class="prog text">75%</p>[m
+[32m+[m[32m                            <div class="progress">[m
+[32m+[m[32m                                <span class="react_js"></span>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="progress-bar">[m
+[32m+[m[32m                        <p class="prog-title">node.js</p>[m
+[32m+[m[32m                        <div class="progress-con">[m
+[32m+[m[32m                            <p class="prog text">87%</p>[m
+[32m+[m[32m                            <div class="progress">[m
+[32m+[m[32m                                <span class="node_js"></span>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="progress-bar">[m
+[32m+[m[32m                        <p class="prog-title">python</p>[m
+[32m+[m[32m                        <div class="progress-con">[m
+[32m+[m[32m                            <p class="prog text">70%</p>[m
+[32m+[m[32m                            <div class="progress">[m
+[32m+[m[32m                                <span class="python"></span>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            <h4 class="stat-title">My Timeline</h4>[m
+[32m+[m[32m            <div class="timeline">[m
+[32m+[m[32m                <div class="timeline-item">[m
+[32m+[m[32m                    <div class="tl-icon">[m
+[32m+[m[32m                        <i class="fas fa-briefcase"></i>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <p class="tl-duration"> 2019 - 2022</p>[m
+[32m+[m[32m                    <h5>Data Analyst<span> - Serra de Estrela Investments</span></h5>[m
+[32m+[m[32m                    <p>[m
+[32m+[m[32m                        Optimized data collection procedures to generate weekly, monthly and quarterly reports.[m
+[32m+[m[32m                    </p>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </section>[m
+[32m+[m[32m        <section class="section sec3" id="portfolio">[m
+[32m+[m[32m            <div class="main-title">[m
+[32m+[m[32m                <h2>My <span>Portfolio</span> <span class="bg-text">My Work</span></h2>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            <p class="port-text">[m
+[32m+[m[32m                Here is some of my work that I've done in various programming languages.[m
+[32m+[m[32m            </p>[m
+[32m+[m[32m            <div class="portfolios">[m
+[32m+[m[32m                <div class="portfolio-item">[m
+[32m+[m[32m                    <div class="image">[m
+[32m+[m[32m                        <img src="img/port1.jpg" alt="">[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="hover-items">[m
+[32m+[m[32m                        <h3>Project Source</h3>[m
+[32m+[m[32m                        <div class="icons">[m
+[32m+[m[32m                            <a href="https://deepnote.com/@ricardo-alnair/Top-25-retailers-8EE6S88dQqe7FBctAbtGtg" class="icon" target="_blank">[m
+[32m+[m[32m                                <i class="fa-solid fa-code"></i>[m
+[32m+[m[32m                            </a>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="portfolio-item">[m
+[32m+[m[32m                    <div class="image">[m
+[32m+[m[32m                        <img src="img/port2.jpg" alt="">[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div class="hover-items">[m
+[32m+[m[32m                        <h3>Project Source</h3>[m
+[32m+[m[32m                        <div class="icons">[m
+[32m+[m[32m                            <a href="#" class="icon" target="_blank">[m
+[32m+[m[32m                                <i class="fa-brands fa-github"></i>[m
+[32m+[m[32m                            </a>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </section>[m
+[32m+[m[32m        <section class="section sec4" id="blogs">[m
+[32m+[m[32m            <div class="blogs-content">[m
+[32m+[m[32m                <div class="main-title">[m
+[32m+[m[32m                    <h2>My <span>Blogs</span><span class="bg-text">My Blogs</span></h2>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="blogs">[m
+[32m+[m[32m                    <div class="blog">[m
+[32m+[m[32m                        <img src="img/blog1.jpg" alt="">[m
+[32m+[m[32m                        <div class="blog-text">[m
+[32m+[m[32m                            <h4>[m
+[32m+[m[32m                                How to create your own website[m
+[32m+[m[32m                            </h4>[m
+[32m+[m[32m                            <p>[m
+[32m+[m[32m                                Aquí se explica la wea para hacer el sitio web.[m
+[32m+[m[32m                            </p>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </section>[m
+[32m+[m[32m        <section class="section sec5 contact" id="contact">[m
+[32m+[m[32m            <div class="contact-container">[m
+[32m+[m[32m                <div class="main-title">[m
+[32m+[m[32m                    <h2>Contact <span>Me</span><span class="bg-text">My Blogs</span></h2>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m                <div class="contact-content-con">[m
+[32m+[m[32m                    <div class="left-contact">[m
+[32m+[m[32m                        <h4>Contact me here</h4>[m
+[32m+[m[32m                        <p>[m
+[32m+[m[32m                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum voluptatibus saepe quae doloribus. Sunt, dicta aperiam consequatur maiores cum quis assumenda fuga velit ratione! Cum quas eos sit laboriosam asperiores.[m
+[32m+[m[32m                        </p>[m
+[32m+[m[32m                        <div class="contact-info">[m
+[32m+[m[32m                            <div class="contact-item">[m
+[32m+[m[32m                                <div class="icon">[m
+[32m+[m[32m                                    <i class="fa-solid fa-envelope"></i>[m
+[32m+[m[32m                                    <span>E-mail</span>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                                <p>[m
+[32m+[m[32m                                    <span>: Richdz3095@gmail.com</span>[m
+[32m+[m[32m                                </p>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                            <div class="contact-item">[m
+[32m+[m[32m                                <div class="icon">[m
+[32m+[m[32m                                    <i class="fa-solid fa-graduation-cap"></i>[m
+[32m+[m[32m                                    <span>Education</span>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                                <p>[m
+[32m+[m[32m                                    <span>Sussex University, East Sussex</span>[m
+[32m+[m[32m                                </p>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                            <div class="contact-item">[m
+[32m+[m[32m                                <div class="icon">[m
+[32m+[m[32m                                    <i class="fa-solid fa-mobile"></i>[m
+[32m+[m[32m                                    <span>Mobile Number</span>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                                <p>[m
+[32m+[m[32m                                    <span>: +52 2228104149</span>[m
+[32m+[m[32m                                </p>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                            <div class="contact-item">[m
+[32m+[m[32m                                <div class="icon">[m
+[32m+[m[32m                                    <i class="fa-solid fa-language"></i>[m
+[32m+[m[32m                                    <span>Languages</span>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                                <p>[m
+[32m+[m[32m                                    <span>: Spanish, English</span>[m
+[32m+[m[32m                                </p>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                        </div>[m
+[32m+[m[32m                        <div class="contact-icons">[m
+[32m+[m[32m                            <div class="contact-icon">[m
+[32m+[m[32m                                <a href="#" target="_blank">[m
+[32m+[m[32m                                    <i class="fab fa-facebook-f"></i>[m
+[32m+[m[32m                                </a>[m
+[32m+[m[32m                                <a href="#" target="_blank">[m
+[32m+[m[32m                                    <i class="fab fa-twitter"></i>[m
+[32m+[m[32m                                </a>[m
+[32m+[m[32m                                <a href="#" target="_blank">[m
+[32m+[m[32m                                    <i class="fab fa-github"></i>[m
+[32m+[m[32m                                </a>[m
+[32m+[m[32m                                <a href="#" target="_blank">[m
+[32m+[m[32m                                    <i class="fab fa-youtube"></i>[m
+[32m+[m[32m                                </a>[m
+[32m+[m[32m             
